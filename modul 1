@@ -1,0 +1,166 @@
+Laporan pak eko modul1
+Penggunaan MATLAB untuk Analisis Step-Response pada Sistem Kendali – Bag. 1
+1.1
+ 
+Figure 1pp
+>> sys=tf([1 2],[1 4 3]);
+step(sys)
+>> step([1 2],[1 4 3])
+ 
+Figure 2ll
+>> sys=tf([1 2],[1 4 3]);
+[y,t]=step(sys);
+plot(t,y);
+ 
+ 
+Figure 3kk
+>> sys=tf([1 2],[1 4 3]);
+step(sys,8);
+>> step([1 2],[1 4 3],8)
+ 
+Figure 4151
+>> sys=tf([1 2],[1 4 3]);
+>> [y,t]=step(sys,8);
+>> plot(t,y);
+
+ 
+1.2
+ 
+Figure 588
+>> sys = tf(4,[1 2 10]);
+t = 0:0.05:5;
+step(sys,t);
+1.3
+ 
+Figure 6hu
+>> sys = zpk(-1,[-0.2+3j,-0.2-3j],1) * tf([1 1],[1 0.05])
+step(sys)
+sys =
+ 
+            (s+1)^2
+  ----------------------------
+  (s+0.05) (s^2 + 0.4s + 9.04)
+ 
+Continuous-time zero/pole/gain model.
+ 
+1.5
+ 
+Figure 7hv
+>> sys = zpk(-1,[-0.2+3j,-0.2-3j],1) * tf([1 1],[1 0.05])
+% step(sys)
+step(sys,15)
+sys =
+ 
+            (s+1)^2
+  ----------------------------
+  (s+0.05) (s^2 + 0.4s + 9.04)
+ 
+Continuous-time zero/pole/gain model.
+Model Properties
+1.6
+ 
+Figure 8jjh
+>> sys = zpk(-1,[-0.2+3j,-0.2-3j],1) * tf([1 1],[1 0.05])
+% step(sys)
+% step(sys,15)
+t = 20:0.2:120;
+step(sys,t)
+
+sys =
+ 
+            (s+1)^2
+  ----------------------------
+  (s+0.05) (s^2 + 0.4s + 9.04)
+
+Penggunaan MATLAB untuk Analisis Step-Response pada Sistem Kendali – Bag. 2
+1.6
+ 
+>> A = [-0.5572,-0.7814;0.7814,0];
+B = [1,-1;0,2];
+C = [1.9691,6.4493];
+sys = ss(A,B,C,0);
+step(sys)
+tf(sys)
+
+ans =
+ 
+  From input 1 to output:
+      1.969 s + 5.039
+  -----------------------
+  s^2 + 0.5572 s + 0.6106
+ 
+  From input 2 to output:
+     10.93 s - 0.9297
+  -----------------------
+  s^2 + 0.5572 s + 0.6106 
+1.7
+ 
+>> A = [-1 -1; 6.5 0];
+B = [1 1;1 0];
+C = [1 0; 0 1];
+D=[0 0; 0 0];
+% sys = ss(A,B,C,D);
+% step(sys)
+% tf(sys)
+step(A,B,C,D)
+>> 
+Untuk memplot dua kurva respons langkah untuk input u1 dalam satu diagram, dan dua
+kurva respons langkah untuk input u2 dalam diagram lain, kita dapat menggunakan
+perintah:
+
+step(A,B, C,D, 1)
+step(A,B, C,D, 2)
+
+ 
+>> A = [-1 -1; 6.5 0]; B = [1 1;1 0]; C = [1 0; 0 1]; D=[0 0; 0 0];
+step(A,B,C,D,1)
+figure;
+step(A,B,C,D,2)
+>> 
+Step-Response dari Discrete-Time System
+ 
+>> A = [1.6 -0.7; 1 0];
+B = [0.5; 0];
+C = [0.1 0.1];
+D = 0;
+sys = ss(A,B,C,D,0.2);
+% 0.2 is the sampling
+
+step(sys)
+>>
+
+ 
+Penggunaan MATLAB untuk Analisis Step-Response pada Sistem Kendali – Bag. 3
+1.9
+ 
+>> sys = tf([1 5 5],[1 1.65 56.5 2]);
+step(sys)
+S = stepinfo(sys)
+
+S = 
+
+  struct with fields:
+
+         RiseTime: 62.1210
+    TransientTime: 109.4246
+     SettlingTime: 109.4246
+      SettlingMin: 2.2586
+      SettlingMax: 2.4984
+        Overshoot: 0
+       Undershoot: 0
+             Peak: 2.4984
+         PeakTime: 206.6433
+
+
+
+
+
+
+
+
+
+
+
+
+
+
